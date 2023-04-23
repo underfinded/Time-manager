@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Время</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="main_block">
+            <nav class="main_block__nav">
+                <ul class="main_block__nav">
+                    <li class="main_block__nav li">Время</li>
+                    <li class="main_block__nav li">Секундомер</li>
+                    <li class="main_block__nav li">Таймер</li>
+                </ul>
+            </nav>
+
+            <div class="main_block__time block">
+                <div class="main_block__time__text">Время в Москве</div>
+                <div class="main_block__time__display">test</div>
+            </div>
+
+            <div class="main_block__stopwatch block">
+                <div class="main_block__stopwatch__display">0 : 0</div>
+                
+                <div class="main_block__stopwatch__buttons_wrapper">
+                    <button class="main_block__stopwatch__button">Старт</button>
+                    <button class="main_block__stopwatch__button_b">сброс</button>
+                </div>
+            </div>
+
+            <div class="main_block__timer block">
+                <input type="number" class="main_block__timer__input" value="0">
+
+                <div class="main_block__timer__buttons_wrapper">
+                    <button class="main_block__timer__button">Старт</button>
+                    <button class="main_block__timer__button_b">сБрОс</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="theme_changer">
+        <p class="theme_changer__font">change</p>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>

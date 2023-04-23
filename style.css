@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    cursor: default;
+    color: #fff;
+    border: none;
+    outline: none;
+    background: none;
+    font-family: 'Arial';
+    list-style: none;
+    box-sizing: border-box;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.2s;
+}
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #000;
+}
+
+.main_block {
+    width: 700px;
+    height: 370px;
+    box-shadow: 0 0 10px #fff;
+    border-radius: 10px;
+}
+
+.main_block__stopwatch__buttons_wrapper{
+    display: flex;
+}
+.main_block__timer__buttons_wrapper{
+    display: flex;
+}
+
+ul.main_block__nav {
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+li.main_block__nav {
+    padding: 10px 0;
+    cursor: pointer; 
+    user-select: none;
+}
+
+
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90%;
+}
+
+
+
+.main_block__time {
+    display: none;
+}
+
+.main_block__time__text {
+    font-size: 32px;
+    user-select: none;
+}
+
+.main_block__time__display {
+    font-size: 70px;
+    padding-top: 20px;
+    font-weight: 800;
+}
+
+
+
+
+
+.main_block__stopwatch {
+    display: none;
+}
+
+.main_block__stopwatch__display {
+    font-size: 70px;
+    padding-bottom: 20px;
+    font-weight: 800;
+}
+
+.main_block__stopwatch__button {
+    font-size: 32px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.main_block__stopwatch__button_b{
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 15px;
+    user-select: none;
+}
+
+
+
+
+
+.main_block__timer {
+    display: none;
+}
+
+.main_block__timer__input {
+    width: 210px;
+    font-size: 70px;
+    padding-bottom: 20px;
+    font-weight: 800;
+}
+
+.main_block__timer__button {
+    font-size: 32px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.main_block__timer__button_b{
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 15px;
+    user-select: none;
+}
+
+.theme_changer{
+    height: 100px;
+    width: 100px;
+    border: 50px solid transparent; 
+    border-bottom: 50px solid rgb(194, 194, 194);
+    border-right: 50px solid rgb(194, 194, 194);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.theme_changer__font{
+    position: absolute;
+    user-select: none;
+    transform: rotate(-45deg);
+    color: #000000;
+    font-size: 20px;
+    bottom: -23px;
+    right: -54px;
+    cursor: pointer;
+}
