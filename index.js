@@ -13,31 +13,44 @@ const TimerButtonB = document.querySelector('.main_block__timer__button_b');
 const TimerButton = document.querySelector('.main_block__timer__button');
 const TimerInput = document.querySelector('.main_block__timer__input');
 
+const navParagraph = document.querySelectorAll('.main_block__nav__paragraph');
 
 let activeWindow = localStorage.getItem('activeWindow');
 //time.style.display = 'flex';
 
+let audio = new Audio('audio.mp3');
+//audio.play();
+
 const li = document.querySelectorAll('.li');
+
+for (let hh of navParagraph) {
+    hh.addEventListener('click', () => {
+        for (let jj of navParagraph) {
+            jj.classList.remove('active');
+        }
+        hh.classList.add('active');
+    });
+};
 
 li[0].addEventListener('click', () => {
     stopWatch.style.display = 'none';
     timer.style.display = 'none';
     time.style.display = 'flex';
-//    localStorage.clear('activeWindow');
+    //    localStorage.clear('activeWindow');
     localStorage.setItem('activeWindow', '1');
 })
 li[1].addEventListener('click', () => {
     stopWatch.style.display = 'flex';
     timer.style.display = 'none';
     time.style.display = 'none';
-//    localStorage.clear('activeWindow');
+    //    localStorage.clear('activeWindow');
     localStorage.setItem('activeWindow', '2');
 })
 li[2].addEventListener('click', () => {
     stopWatch.style.display = 'none';
     timer.style.display = 'flex';
     time.style.display = 'none';
-//    localStorage.clear('activeWindow');
+    //    localStorage.clear('activeWindow');
     localStorage.setItem('activeWindow', '3');
 })
 
@@ -103,6 +116,8 @@ TimerInput.addEventListener('change', () => {
     }
 })
 
+var gdz;
+
 Timer();
 function Timer() {
     TimerButton.addEventListener('click', () => {
@@ -113,6 +128,7 @@ function Timer() {
             Sinterval = setInterval(() => {
                 TimerInput.value = --Stime;
                 if (Stime == 0) {
+                    addTimeOutWindow(); soundEffect();
                     clearInterval(Sinterval);
                     TimerButton.textContent = 'Старт';
                 }
@@ -127,6 +143,13 @@ function Timer() {
         }
     })
 }
+
+function soundEffect(){
+    gdz = setInterval(()=>{
+        audio.play();
+    },100)
+}
+
 TimerButtonB.addEventListener('click', () => {
     clearInterval(Sinterval);
     TimerButton.textContent = 'Старт';
@@ -148,8 +171,9 @@ function changeTheme() {
         mainBlock.style.boxShadow = '0 0 10px #000';
         nowTheme = false;
 
-        for (let z of li) {
-            z.style.color = '#000';
+        for (let z of navParagraph) {
+            z.classList.remove('white');
+            z.classList.add('black');
         }
 
         document.querySelector('.main_block__time__text').style.color = '#000';
@@ -160,17 +184,18 @@ function changeTheme() {
         TimerButtonB.style.color = '#000';
         TimerButton.style.color = '#000';
         TimerInput.style.color = '#000';
-//        localStorage.clear('nowTheme');
+        //        localStorage.clear('nowTheme');
         localStorage.setItem('nowTheme', nowTheme);
-//        console.log(localStorage.getItem('nowTheme'));
+        //        console.log(localStorage.getItem('nowTheme'));
     }
     else if (nowTheme === false) {
         wrap.style.background = '#000';
         mainBlock.style.boxShadow = '0 0 10px #fff';
         nowTheme = true;
 
-        for (let z of li) {
-            z.style.color = '#fff';
+        for (let z of navParagraph) {
+            z.classList.remove('black');
+            z.classList.add('white');
         }
 
         document.querySelector('.main_block__time__text').style.color = '#fff';
@@ -181,9 +206,9 @@ function changeTheme() {
         TimerButtonB.style.color = '#fff';
         TimerButton.style.color = '#fff';
         TimerInput.style.color = '#fff';
-//        localStorage.clear('nowTheme');
+        //        localStorage.clear('nowTheme');
         localStorage.setItem('nowTheme', nowTheme);
-//        console.log(localStorage.getItem('nowTheme'));
+        //        console.log(localStorage.getItem('nowTheme'));
     }
 }
 
@@ -205,8 +230,9 @@ function autoApplyData() {
         mainBlock.style.boxShadow = '0 0 10px #000';
         nowTheme = false;
 
-        for (let z of li) {
-            z.style.color = '#000';
+        for (let z of navParagraph) {
+            z.classList.remove('white');
+            z.classList.add('black');
         }
 
         document.querySelector('.main_block__time__text').style.color = '#000';
@@ -223,8 +249,9 @@ function autoApplyData() {
         mainBlock.style.boxShadow = '0 0 10px #fff';
         nowTheme = true;
 
-        for (let z of li) {
-            z.style.color = '#fff';
+        for (let z of navParagraph) {
+            z.classList.remove('black');
+            z.classList.add('white');
         }
 
         document.querySelector('.main_block__time__text').style.color = '#fff';
@@ -238,7 +265,7 @@ function autoApplyData() {
     }
 
 
-    
+
     if (activeWindow === '1') {
         stopWatch.style.display = 'none';
         timer.style.display = 'none';
@@ -256,3 +283,47 @@ function autoApplyData() {
     }
 }
 autoApplyData();
+
+let timeOut;
+let TimeOutBTN;
+
+var elementA;
+var elementB;
+var elementC;
+
+function addTimeOutWindow(){
+    elementA = document.createElement('div');
+    elementA.className = 'time_out';
+    document.body.append(elementA);
+
+    timeOut = document.querySelector('.time_out');
+
+    elementB = document.createElement('p');
+    elementB.className = 'time_out__p';
+    elementB.textContent = 'ВРЕМЯ ТАЙМЕРА ИСТЕКЛО';
+    timeOut.prepend(elementB);
+
+    elementC = document.createElement('button');
+    elementC.className = 'time_out__btn';
+    elementC.textContent = 'OK';
+    timeOut.append(elementC);
+
+    TimeOutBTN = document.querySelector('.time_out__btn');
+    n2();
+}
+
+function n2(){
+    TimeOutBTN.addEventListener('click', ()=>{
+        deleteTimeOutWindow();
+        clearInterval(gdz);
+    })
+}
+
+function deleteTimeOutWindow(){
+    timeOut.style.top = '-200px';
+    setTimeout(()=>{
+        elementA.remove();
+        elementB.remove();
+        elementC.remove();
+    }, 300)
+}
