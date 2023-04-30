@@ -1,19 +1,19 @@
-const stopWatch = document.querySelector('.main_block__stopwatch');
-const timer = document.querySelector('.main_block__timer');
-const time = document.querySelector('.main_block__time');
+const stopWatch = document.querySelector('.stopwatch');
+const timer = document.querySelector('.timer');
+const time = document.querySelector('.time');
 
 
-const timeDisplay = document.querySelector('.main_block__time__display');
+const timeDisplay = document.querySelector('.time__display');
 
-const StopWatchDisplay = document.querySelector('.main_block__stopwatch__display');
-const StopWatchButtonB = document.querySelector('.main_block__stopwatch__button_b');
-const StopWatchButton = document.querySelector('.main_block__stopwatch__button');
+const StopWatchDisplay = document.querySelector('.stopwatch__display');
+const StopWatchButtonB = document.querySelector('.stopwatch__button-b');
+const StopWatchButton = document.querySelector('.stopwatch__button-a');
 
-const TimerButtonB = document.querySelector('.main_block__timer__button_b');
-const TimerButton = document.querySelector('.main_block__timer__button');
-const TimerInput = document.querySelector('.main_block__timer__input');
+const TimerButtonB = document.querySelector('.timer__button-b');
+const TimerButton = document.querySelector('.timer__button-a');
+const TimerInput = document.querySelector('.timer__input');
 
-const navParagraph = document.querySelectorAll('.main_block__nav__paragraph');
+const navParagraph = document.querySelectorAll('.nav__paragraph');
 
 let activeWindow = localStorage.getItem('activeWindow');
 //time.style.display = 'flex';
@@ -21,7 +21,7 @@ let activeWindow = localStorage.getItem('activeWindow');
 let audio = new Audio('audio.mp3');
 //audio.play();
 
-const li = document.querySelectorAll('.li');
+const li = document.querySelectorAll('.nav__li-element');
 
 for (let hh of navParagraph) {
     hh.addEventListener('click', () => {
@@ -32,21 +32,21 @@ for (let hh of navParagraph) {
     });
 };
 
-li[0].addEventListener('click', () => {
+navParagraph[0].addEventListener('click', () => {
     stopWatch.style.display = 'none';
     timer.style.display = 'none';
     time.style.display = 'flex';
     //    localStorage.clear('activeWindow');
     localStorage.setItem('activeWindow', '1');
 })
-li[1].addEventListener('click', () => {
+navParagraph[1].addEventListener('click', () => {
     stopWatch.style.display = 'flex';
     timer.style.display = 'none';
     time.style.display = 'none';
     //    localStorage.clear('activeWindow');
     localStorage.setItem('activeWindow', '2');
 })
-li[2].addEventListener('click', () => {
+navParagraph[2].addEventListener('click', () => {
     stopWatch.style.display = 'none';
     timer.style.display = 'flex';
     time.style.display = 'none';
@@ -144,10 +144,10 @@ function Timer() {
     })
 }
 
-function soundEffect(){
-    gdz = setInterval(()=>{
+function soundEffect() {
+    gdz = setInterval(() => {
         audio.play();
-    },100)
+    }, 100)
 }
 
 TimerButtonB.addEventListener('click', () => {
@@ -176,7 +176,7 @@ function changeTheme() {
             z.classList.add('black');
         }
 
-        document.querySelector('.main_block__time__text').style.color = '#000';
+        document.querySelector('.time__text').style.color = '#000';
         timeDisplay.style.color = '#000';
         StopWatchDisplay.style.color = '#000';
         StopWatchButtonB.style.color = '#000';
@@ -198,7 +198,7 @@ function changeTheme() {
             z.classList.add('white');
         }
 
-        document.querySelector('.main_block__time__text').style.color = '#fff';
+        document.querySelector('.time__text').style.color = '#fff';
         timeDisplay.style.color = '#fff';
         StopWatchDisplay.style.color = '#fff';
         StopWatchButtonB.style.color = '#fff';
@@ -235,7 +235,7 @@ function autoApplyData() {
             z.classList.add('black');
         }
 
-        document.querySelector('.main_block__time__text').style.color = '#000';
+        document.querySelector('.time__text').style.color = '#000';
         timeDisplay.style.color = '#000';
         StopWatchDisplay.style.color = '#000';
         StopWatchButtonB.style.color = '#000';
@@ -254,7 +254,7 @@ function autoApplyData() {
             z.classList.add('white');
         }
 
-        document.querySelector('.main_block__time__text').style.color = '#fff';
+        document.querySelector('.time__text').style.color = '#fff';
         timeDisplay.style.color = '#fff';
         StopWatchDisplay.style.color = '#fff';
         StopWatchButtonB.style.color = '#fff';
@@ -291,7 +291,7 @@ var elementA;
 var elementB;
 var elementC;
 
-function addTimeOutWindow(){
+function addTimeOutWindow() {
     elementA = document.createElement('div');
     elementA.className = 'time_out';
     document.body.append(elementA);
@@ -312,16 +312,16 @@ function addTimeOutWindow(){
     n2();
 }
 
-function n2(){
-    TimeOutBTN.addEventListener('click', ()=>{
+function n2() {
+    TimeOutBTN.addEventListener('click', () => {
         deleteTimeOutWindow();
         clearInterval(gdz);
     })
 }
 
-function deleteTimeOutWindow(){
+function deleteTimeOutWindow() {
     timeOut.style.top = '-200px';
-    setTimeout(()=>{
+    setTimeout(() => {
         elementA.remove();
         elementB.remove();
         elementC.remove();

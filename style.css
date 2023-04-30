@@ -14,8 +14,9 @@
     transition: 0.2s;
 }
 
+/* main  -----------------------------------------*/
 .wrapper {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,29 +31,29 @@
     border-radius: 10px;
 }
 
-.main_block__stopwatch__buttons_wrapper {
-    display: flex;
-}
+/* main  -----------------------------------------*/
 
-.main_block__timer__buttons_wrapper {
-    display: flex;
-}
 
-ul.main_block__nav {
+
+/* nav elements ------------------------------------------*/
+.nav__ul {
     display: flex;
     justify-content: space-around;
     font-size: 20px;
     border-bottom: 1px solid #d0d0d0;
 }
 
-li.main_block__nav {
+.nav__li-element {
     padding: 10px 0;
-    cursor: pointer;
+/*    cursor: pointer; */
     user-select: none;
 }
+/* nav elements ------------------------------------------*/
 
 
-.block {
+
+/* main elements -----------------------------------------*/
+.time {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,72 +61,73 @@ li.main_block__nav {
     height: 90%;
 }
 
-
-
-.main_block__time {
-    display: none;
+.stopwatch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90%;
 }
 
-.main_block__time__text {
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90%;
+}
+
+/* main elements -----------------------------------------*/
+
+
+
+
+
+
+.time__text {
     font-size: 32px;
     user-select: none;
 }
 
-.main_block__time__display {
+.time__display {
     font-size: 70px;
     padding-top: 20px;
     font-weight: 800;
 }
 
-
-
-
-
-.main_block__stopwatch {
-    display: none;
-}
-
-.main_block__stopwatch__display {
+.stopwatch__display {
     font-size: 70px;
     padding-bottom: 20px;
     font-weight: 800;
 }
 
-.main_block__stopwatch__button {
+.stopwatch__button-a {
     font-size: 32px;
     cursor: pointer;
     user-select: none;
 }
 
-.main_block__stopwatch__button_b {
+.stopwatch__button-b {
     font-size: 20px;
     cursor: pointer;
     margin-left: 15px;
     user-select: none;
 }
 
-
-
-
-
-.main_block__timer {
-    display: none;
-}
-
-.main_block__timer__input {
+.timer__input {
     width: 210px;
     font-size: 70px;
     padding-bottom: 20px;
     font-weight: 800;
 }
 
-.main_block__timer__button {
+.timer__button-a {
     font-size: 32px;
     cursor: pointer;
     user-select: none;
 }
 
-.main_block__timer__button_b {
+.timer__button-b {
     font-size: 20px;
     cursor: pointer;
     margin-left: 15px;
@@ -155,16 +157,7 @@ li.main_block__nav {
     cursor: pointer;
 }
 
-.main_block__nav__paragraph {
-    cursor: pointer;
-}
-
-.main_block__nav__paragraph:hover {
-    color: #919191;
-
-}
-
-.time_out{
+.time_out {
     position: absolute;
     top: 0;
     left: 110px;
@@ -181,7 +174,7 @@ li.main_block__nav {
     font-size: 20px;
 }
 
-.time_out__btn{
+.time_out__btn {
     font-size: 22px;
     font-weight: 300px;
     padding: 1px 9px;
@@ -190,14 +183,40 @@ li.main_block__nav {
     cursor: pointer;
 }
 
-@keyframes open {
-    0%{top: -110px;}
-    100%{top: 0px;}
+.stopwatch__buttons-wrapper {
+    display: flex;
+}
+
+.timer__buttons-wrapper {
+    display: flex;
+}
+
+.nav__paragraph {
+    cursor: pointer;
+}
+
+.nav__paragraph:hover {
+    color: #919191;
 }
 
 .active {
-    color: #4377c1;
+    border-bottom: 1px solid #6d5fb4;
 }
 
-.black {color: black;}
-.white{color: white;}
+.black {
+    color: black;
+}
+
+.white {
+    color: white;
+}
+
+@keyframes open {
+    0% {
+        top: -110px;
+    }
+
+    100% {
+        top: 0px;
+    }
+}
