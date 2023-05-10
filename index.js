@@ -15,13 +15,55 @@ const TimerInput = document.querySelector('.timer__input');
 
 const navParagraph = document.querySelectorAll('.nav__paragraph');
 
+const test = document.querySelectorAll('.test');
+
+const wrap = document.querySelector('.wrapper');
+const mainBlock = document.querySelector('.main_block');
+const ThemeChanger = document.querySelector('.theme_changer');
+
 let activeWindow = localStorage.getItem('activeWindow');
 //time.style.display = 'flex';
 
-let audio = new Audio('audio.mp3');
+const audio = new Audio('audio.mp3');
 //audio.play();
 
 const li = document.querySelectorAll('.nav__li-element');
+
+const hourHand = document.querySelector('.hour_hand');
+const minuteHand = document.querySelector('.minute_hand');
+const secondHand = document.querySelector('.second_hand');
+
+const SWhand = document.querySelector('.stopwatch__hand');
+
+let localnowTheme = localStorage.getItem('nowTheme');
+
+let ZZouthours,
+    ZZoutminutes,
+    ZZoutSeconds;
+
+let Tsecond = 0,
+    Tminute = 0,
+    hand = 0;
+
+let fixedSeconds = 0;
+
+
+let Sinterval,
+    Stime = 0,
+    Scheck = true;
+
+let Tcheck = true,
+    TtimeInterval;
+
+var sound;
+let nowTheme = true;
+
+let timeOut;
+let TimeOutBTN;
+
+var elementA;
+var elementB;
+var elementC;
 
 for (let hh of navParagraph) {
     hh.addEventListener('click', () => {
@@ -32,36 +74,18 @@ for (let hh of navParagraph) {
     });
 };
 
-const hourHand = document.querySelector('.hour_hand');
-const minuteHand = document.querySelector('.minute_hand');
-const secondHand = document.querySelector('.second_hand');
-let ZZouthours,
-    ZZoutminutes,
-    ZZoutSeconds;
+for (let i = 0; i < navParagraph.length ; ++i) {
+    navParagraph[i].addEventListener('click', () => {
+        for (let a of test) {
+            a.style.display = 'none';
+        }
 
-navParagraph[0].addEventListener('click', () => {
-    stopWatch.style.display = 'none';
-    timer.style.display = 'none';
-    time.style.display = 'flex';
-    //    localStorage.clear('activeWindow');
-    localStorage.setItem('activeWindow', '1');
-})
-navParagraph[1].addEventListener('click', () => {
-    stopWatch.style.display = 'flex';
-    timer.style.display = 'none';
-    time.style.display = 'none';
-    //    localStorage.clear('activeWindow');
-    localStorage.setItem('activeWindow', '2');
-})
-navParagraph[2].addEventListener('click', () => {
-    stopWatch.style.display = 'none';
-    timer.style.display = 'flex';
-    time.style.display = 'none';
-    //    localStorage.clear('activeWindow');
-    localStorage.setItem('activeWindow', '3');
-})
+        test[i].style.display = 'flex';
+        localStorage.setItem('activeWindow', i);
+    })
+}
 
-let nado = 0;
+
 
 function clock() {
     var date = new Date(),
@@ -76,51 +100,40 @@ function clock() {
 }
 
 
-
-setInterval(()=>{
+setInterval(() => {
     clock();
     setTime();
 }, 1000);
-clock();setFirstTime();nadoF();
+clock(); setFirstTime(); SetFixedSeconds();
 
 
-function setFirstTime(){
+function setFirstTime() {
     hourHand.style.transform = `rotate(${ZZouthours * 30}deg)`;
     minuteHand.style.transform = `rotate(${ZZoutminutes * 6}deg)`;
     secondHand.style.transform = `rotate(${ZZoutSeconds * 6}deg)`;
 }
 
-function setTime(){
+function setTime() {
     hourHand.style.transform = `rotate(${ZZouthours * 30}deg)`;
     minuteHand.style.transform = `rotate(${ZZoutminutes * 6}deg)`;
-    secondHand.style.transform = `rotate(${++nado * 6}deg)`;
+    secondHand.style.transform = `rotate(${++fixedSeconds * 6}deg)`;
 }
 
-function nadoF(){
-    nado = ZZoutSeconds;
-}
+function SetFixedSeconds() { fixedSeconds = ZZoutSeconds; }
 
 // -----------------
 
-const SWhand = document.querySelector('.stopwatch__hand');
-
-let Tsecond = 0;
-let Tminute = 0;
-let ha = 0;
-
-let Tcheck = true;
-let TtimeInterval;
 StopWatchButton.addEventListener('click', () => {
     if (Tcheck == true) {
         TtimeInterval = setInterval(() => {
             Tsecond++;
             StopWatchDisplay.textContent = `${Tminute} : ${Tsecond}`;
-            SWhand.style.transform = `rotate(${++ha * 6}deg)`;
+            SWhand.style.transform = `rotate(${++hand * 6}deg)`;
             if (Tsecond == 60) {
                 Tminute++;
                 Tsecond = 0;
             }
-            
+
         }, 1000);
         StopWatchButton.textContent = 'стоп';
         Tcheck = false;
@@ -130,7 +143,7 @@ StopWatchButton.addEventListener('click', () => {
         StopWatchButton.textContent = 'старт';
         Tcheck = true;
         SWhand.style.transform = `rotate(0deg)`;
-        ha = 0;
+        hand = 0;
     }
 })
 
@@ -142,14 +155,12 @@ StopWatchButtonB.addEventListener('click', () => {
     Tminute = 0;
     Tsecond = 0;
     SWhand.style.transform = `rotate(0deg)`;
-    ha = 0;
+    hand = 0;
 })
 
 // -----------------
 
-var Stime = 0;
-let Scheck = true;
-let Sinterval;
+
 
 TimerInput.addEventListener('change', () => {
     if (TimerInput.value < 1) {
@@ -160,7 +171,7 @@ TimerInput.addEventListener('change', () => {
     }
 })
 
-var gdz;
+
 
 Timer();
 function Timer() {
@@ -189,7 +200,7 @@ function Timer() {
 }
 
 function soundEffect() {
-    gdz = setInterval(() => {
+    sound = setInterval(() => {
         audio.play();
     }, 100)
 }
@@ -202,12 +213,9 @@ TimerButtonB.addEventListener('click', () => {
     TimerInput.value = '0';
 });
 
-const wrap = document.querySelector('.wrapper');
-const mainBlock = document.querySelector('.main_block');
-const ThemeChanger = document.querySelector('.theme_changer');
+
 ThemeChanger.addEventListener('click', changeTheme);
 
-let nowTheme = true;
 
 function changeTheme() {
     if (nowTheme === true) {
@@ -256,15 +264,15 @@ function changeTheme() {
     }
 }
 
-let localnowTheme = localStorage.getItem('nowTheme');
+
 
 function checkNull() {
-    if (localnowTheme <= 0) {
+    if (localnowTheme === null) {
         localStorage.setItem('nowTheme', nowTheme);
         location.reload();
     }
-    if (activeWindow <= 0) {
-        localStorage.setItem('activeWindow', '1');
+    if (activeWindow === null) {
+        localStorage.setItem('activeWindow', '0');
         location.reload();
     }
 }
@@ -310,19 +318,18 @@ function autoApplyData() {
         TimerInput.style.color = '#fff';
     }
 
-
-
-    if (activeWindow === '1') {
+    
+    if (activeWindow === '0') {
         stopWatch.style.display = 'none';
         timer.style.display = 'none';
         time.style.display = 'flex';
     }
-    if (activeWindow === '2') {
+    if (activeWindow === '1') {
         stopWatch.style.display = 'flex';
         timer.style.display = 'none';
         time.style.display = 'none';
     }
-    if (activeWindow === '3') {
+    if (activeWindow === '2') {
         stopWatch.style.display = 'none';
         timer.style.display = 'flex';
         time.style.display = 'none';
@@ -330,12 +337,7 @@ function autoApplyData() {
 }
 autoApplyData();
 
-let timeOut;
-let TimeOutBTN;
 
-var elementA;
-var elementB;
-var elementC;
 
 function addTimeOutWindow() {
     elementA = document.createElement('div');
@@ -361,7 +363,7 @@ function addTimeOutWindow() {
 function n2() {
     TimeOutBTN.addEventListener('click', () => {
         deleteTimeOutWindow();
-        clearInterval(gdz);
+        clearInterval(sound);
     })
 }
 
