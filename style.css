@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'film';
+    src: url(fonts/BrunoAceSC-Regular.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -55,25 +60,24 @@
 /* main elements -----------------------------------------*/
 .time {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
     height: 90%;
 }
 
 .stopwatch {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
+/*    flex-direction: column;*/
     height: 90%;
 }
 
 .timer {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
+/*    flex-direction: column;*/
     height: 90%;
 }
 
@@ -90,15 +94,17 @@
 }
 
 .time__display {
-    font-size: 70px;
+    font-size: 66px;
     padding-top: 20px;
-    font-weight: 800;
+    font-weight: 900;
+    font-family: 'film';
 }
 
 .stopwatch__display {
     font-size: 70px;
     padding-bottom: 20px;
     font-weight: 800;
+    font-family: 'film';
 }
 
 .stopwatch__button-a {
@@ -119,6 +125,7 @@
     font-size: 70px;
     padding-bottom: 20px;
     font-weight: 800;
+    font-family: 'film';
 }
 
 .timer__button-a {
@@ -209,6 +216,129 @@
 
 .white {
     color: white;
+}
+
+.timeH{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #b1b1b1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.time__center{
+    position: absolute;
+    z-index: 3;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: black;
+}
+
+.hour_hand{
+    height: 180px;
+    width: 6px;
+    position: absolute;
+    border-radius: 4px;
+    transition: 0.6s;
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.minute_hand{
+    height: 180px;
+    width: 4px;
+    position: absolute;
+    transition: 0.6s;
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.second_hand{
+    height: 180px;
+    width: 2px;
+    position: absolute;
+    transition: 0.6s;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.number_plate{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.number_plate-X{
+    position: absolute;
+    height: 40px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 0;
+    padding: 0 15px;
+}
+.number_plate-Y{
+    position: absolute;
+    height: 200px;
+    width: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    z-index: 0;
+    padding: 15px 0;
+}
+
+.number_plate-paragraph{
+    width: 40px;
+    height: 40px;
+    font-size: 32px;
+    font-weight: 900;
+    color: black;
+    padding: 10px;
+    transform: translateX(-5px) translateY(-15px);
+}
+
+.stopwatch__timer{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #b1b1b1;
+    user-select: none;
+}
+
+.stopwatch__timer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stopwatch__fortimer{
+    position: absolute;
+    height: 180px;
+    width: 5px;
+    border-radius: 2px;
+}
+
+.stopwatch__hand{
+    z-index: 1;
+    height: 140px;
+    width: 4px;
+    border-radius: 2px;
+}
+
+.left_side{
+    width: 330px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 @keyframes open {

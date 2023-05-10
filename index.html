@@ -27,25 +27,68 @@
             </nav>
 
             <div class="time">
-                <div class="time__text">Время в Москве</div>
-                <div class="time__display">test</div>
-            </div>
-
-            <div class="stopwatch">
-                <div class="stopwatch__display">0 : 0</div>
-
-                <div class="stopwatch__buttons-wrapper">
-                    <button class="stopwatch__button-a">Старт</button>
-                    <button class="stopwatch__button-b">сброс</button>
+                <div class="left_side">
+                    <div class="time__text">Время в Москве</div>
+                    <div class="time__display">test</div>
+                </div>
+                <div class="right_side">
+                    <div class="timeH">
+                        <div class="time__center"></div>
+                        <img class="hour_hand" src="images/hours.png">
+                        <img class="minute_hand" src="images/minutes.png">
+                        <img class="second_hand" src="images/seconds.png">
+                        <div class="number_plate">
+                            <div class="number_plate-X">
+                                <p class="number_plate-paragraph">9</p>
+                                <p class="number_plate-paragraph">3</p>
+                            </div>
+                            <div class="number_plate-Y">
+                                <p class="number_plate-paragraph" style="transform: translateX(-10px) translateY(-10px)">12</p>
+                                <p class="number_plate-paragraph" style="transform: translateX(1px) translateY(-15px);">6</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="timer">
-                <input type="number" class="timer__input" value="0">
+            <div class="stopwatch">
+                <div class="left_side">
+                    <div class="stopwatch__display">0 : 0</div>
 
-                <div class="timer__buttons-wrapper">
-                    <button class="timer__button-a">Старт</button>
-                    <button class="timer__button-b">сБрОс</button>
+                    <div class="stopwatch__buttons-wrapper">
+                        <button class="stopwatch__button-a">Старт</button>
+                        <button class="stopwatch__button-b">сброс</button>
+                    </div>
+                </div>
+                <div class="right_side">
+                    <div class="stopwatch__timer">
+                        <div class="time__center"></div>
+                        <img class="stopwatch__hand" src="images/hours.png">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(0deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(30deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(60deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(90deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(120deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(150deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(180deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(210deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(240deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(270deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(300deg)">
+                        <img class="stopwatch__fortimer" src="images/forTimer.png" style="transform: rotate(330deg)">
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="timer">
+                <div class="left_side">
+                    <input type="number" class="timer__input" value="0">
+
+                    <div class="timer__buttons-wrapper">
+                        <button class="timer__button-a">Старт</button>
+                        <button class="timer__button-b">сБрОс</button>
+                    </div>
                 </div>
             </div>
         </div>

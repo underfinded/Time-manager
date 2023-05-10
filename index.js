@@ -32,6 +32,13 @@ for (let hh of navParagraph) {
     });
 };
 
+const hourHand = document.querySelector('.hour_hand');
+const minuteHand = document.querySelector('.minute_hand');
+const secondHand = document.querySelector('.second_hand');
+let ZZouthours,
+    ZZoutminutes,
+    ZZoutSeconds;
+
 navParagraph[0].addEventListener('click', () => {
     stopWatch.style.display = 'none';
     timer.style.display = 'none';
@@ -54,20 +61,52 @@ navParagraph[2].addEventListener('click', () => {
     localStorage.setItem('activeWindow', '3');
 })
 
+let nado = 0;
 
 function clock() {
     var date = new Date(),
         hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
-        minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
+        minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes(),
+        seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
     timeDisplay.textContent = `${hours} : ${minutes}`;
+
+    ZZouthours = hours;
+    ZZoutminutes = minutes;
+    ZZoutSeconds = seconds;
 }
-setInterval(clock, 1000);
-clock();
+
+
+
+setInterval(()=>{
+    clock();
+    setTime();
+}, 1000);
+clock();setFirstTime();nadoF();
+
+
+function setFirstTime(){
+    hourHand.style.transform = `rotate(${ZZouthours * 30}deg)`;
+    minuteHand.style.transform = `rotate(${ZZoutminutes * 6}deg)`;
+    secondHand.style.transform = `rotate(${ZZoutSeconds * 6}deg)`;
+}
+
+function setTime(){
+    hourHand.style.transform = `rotate(${ZZouthours * 30}deg)`;
+    minuteHand.style.transform = `rotate(${ZZoutminutes * 6}deg)`;
+    secondHand.style.transform = `rotate(${++nado * 6}deg)`;
+}
+
+function nadoF(){
+    nado = ZZoutSeconds;
+}
 
 // -----------------
 
+const SWhand = document.querySelector('.stopwatch__hand');
+
 let Tsecond = 0;
 let Tminute = 0;
+let ha = 0;
 
 let Tcheck = true;
 let TtimeInterval;
@@ -76,11 +115,12 @@ StopWatchButton.addEventListener('click', () => {
         TtimeInterval = setInterval(() => {
             Tsecond++;
             StopWatchDisplay.textContent = `${Tminute} : ${Tsecond}`;
-
+            SWhand.style.transform = `rotate(${++ha * 6}deg)`;
             if (Tsecond == 60) {
                 Tminute++;
                 Tsecond = 0;
             }
+            
         }, 1000);
         StopWatchButton.textContent = 'стоп';
         Tcheck = false;
@@ -89,6 +129,8 @@ StopWatchButton.addEventListener('click', () => {
         clearInterval(TtimeInterval);
         StopWatchButton.textContent = 'старт';
         Tcheck = true;
+        SWhand.style.transform = `rotate(0deg)`;
+        ha = 0;
     }
 })
 
@@ -99,6 +141,8 @@ StopWatchButtonB.addEventListener('click', () => {
     Tcheck = true;
     Tminute = 0;
     Tsecond = 0;
+    SWhand.style.transform = `rotate(0deg)`;
+    ha = 0;
 })
 
 // -----------------
@@ -215,11 +259,13 @@ function changeTheme() {
 let localnowTheme = localStorage.getItem('nowTheme');
 
 function checkNull() {
-    if (localnowTheme === null) {
+    if (localnowTheme <= 0) {
         localStorage.setItem('nowTheme', nowTheme);
+        location.reload();
     }
-    if (activeWindow === null) {
+    if (activeWindow <= 0) {
         localStorage.setItem('activeWindow', '1');
+        location.reload();
     }
 }
 checkNull();
