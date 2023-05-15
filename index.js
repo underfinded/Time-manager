@@ -9,9 +9,12 @@ const StopWatchDisplay = document.querySelector('.stopwatch__display');
 const StopWatchButtonB = document.querySelector('.stopwatch__button-b');
 const StopWatchButton = document.querySelector('.stopwatch__button-a');
 
+
+const TimerWrap = document.querySelector('.timer_timeout-wrapper');
 const TimerButtonB = document.querySelector('.timer__button-b');
 const TimerButton = document.querySelector('.timer__button-a');
 const TimerInput = document.querySelector('.timer__input');
+
 
 const navParagraph = document.querySelectorAll('.nav__paragraph');
 
@@ -37,6 +40,8 @@ const SWhand = document.querySelector('.stopwatch__hand');
 
 let localnowTheme = localStorage.getItem('nowTheme');
 
+let TimerElem;
+
 let ZZouthours,
     ZZoutminutes,
     ZZoutSeconds;
@@ -46,7 +51,7 @@ let Tsecond = 0,
     hand = 0;
 
 let fixedSeconds = 0;
-
+let ElementHeightOnePiece;
 
 let Sinterval,
     Stime = 0,
@@ -61,9 +66,10 @@ let nowTheme = true;
 let timeOut;
 let TimeOutBTN;
 
-var elementA;
-var elementB;
-var elementC;
+var elementA,
+    elementB,
+    elementC,
+    elementD;
 
 for (let hh of navParagraph) {
     hh.addEventListener('click', () => {
@@ -74,7 +80,7 @@ for (let hh of navParagraph) {
     });
 };
 
-for (let i = 0; i < navParagraph.length ; ++i) {
+for (let i = 0; i < navParagraph.length; ++i) {
     navParagraph[i].addEventListener('click', () => {
         for (let a of test) {
             a.style.display = 'none';
@@ -135,15 +141,13 @@ StopWatchButton.addEventListener('click', () => {
             }
 
         }, 1000);
-        StopWatchButton.textContent = 'стоп';
+        StopWatchButton.textContent = 'пауза';
         Tcheck = false;
     }
     else if (Tcheck == false) {
         clearInterval(TtimeInterval);
         StopWatchButton.textContent = 'старт';
         Tcheck = true;
-        SWhand.style.transform = `rotate(0deg)`;
-        hand = 0;
     }
 })
 
@@ -172,20 +176,43 @@ TimerInput.addEventListener('change', () => {
 })
 
 
+function SetTimerElement() {
+    elementD = document.createElement('div');
+    elementD.className = `timer_timeout-element`;
+    TimerWrap.append(elementD);
+
+    TimerElem = document.querySelector('.timer_timeout-element');
+}
+
+
+let ElementHeight = 220;
+let ElementHeightPrend = 0;
 
 Timer();
 function Timer() {
     TimerButton.addEventListener('click', () => {
-        Stime = TimerInput.value;
-
         if (Scheck == true) {
             Stime = TimerInput.value;
+
+            SetTimerElement();
+                ElementHeightOnePiece = ElementHeight / Stime;
+                TimerElem.style.height = `${ElementHeight}px`;
+
             Sinterval = setInterval(() => {
                 TimerInput.value = --Stime;
+                ElementHeightPrend = ElementHeight - ElementHeightOnePiece;
+                ElementHeight = ElementHeightPrend;
+                TimerElem.style.height = `${ElementHeightPrend}px`; 
+
                 if (Stime == 0) {
                     addTimeOutWindow(); soundEffect();
                     clearInterval(Sinterval);
-                    TimerButton.textContent = 'Старт';
+                        TimerButton.textContent = 'Старт';
+                        TimerElem.style.height = '0px';
+                            setTimeout(() => {
+                                elementD.remove();
+                            }, 500)
+                    ElementHeight = 220;
                 }
             }, 1000);
             TimerButton.textContent = 'Стоп';
@@ -195,9 +222,18 @@ function Timer() {
             clearInterval(Sinterval);
             TimerButton.textContent = 'Старт';
             Scheck = true;
+
+            TimerElem.style.height = '0px';
+            setTimeout(() => {
+                elementD.remove();
+            }, 500)
+
+            ElementHeight = 220;
         }
     })
 }
+
+
 
 function soundEffect() {
     sound = setInterval(() => {
@@ -211,6 +247,14 @@ TimerButtonB.addEventListener('click', () => {
     Scheck = true;
     Stime = 0;
     TimerInput.value = '0';
+
+    TimerElem.style.height = '0px';
+    setTimeout(() => {
+        elementD.remove();
+    }, 500)
+
+    ElementHeight = 220;
+    deleteTimeOutWindow();
 });
 
 
@@ -318,7 +362,7 @@ function autoApplyData() {
         TimerInput.style.color = '#fff';
     }
 
-    
+
     if (activeWindow === '0') {
         stopWatch.style.display = 'none';
         timer.style.display = 'none';
@@ -363,7 +407,6 @@ function addTimeOutWindow() {
 function n2() {
     TimeOutBTN.addEventListener('click', () => {
         deleteTimeOutWindow();
-        clearInterval(sound);
     })
 }
 
@@ -373,5 +416,6 @@ function deleteTimeOutWindow() {
         elementA.remove();
         elementB.remove();
         elementC.remove();
-    }, 300)
+    }, 300);
+    clearInterval(sound);
 }
