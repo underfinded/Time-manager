@@ -192,27 +192,32 @@ Timer();
 function Timer() {
     TimerButton.addEventListener('click', () => {
         if (Scheck == true) {
+            if (TimerInput.value == 0) {
+                TimerInput.value = 1;
+            }
+
             Stime = TimerInput.value;
 
             SetTimerElement();
-                ElementHeightOnePiece = ElementHeight / Stime;
-                TimerElem.style.height = `${ElementHeight}px`;
+            ElementHeightOnePiece = ElementHeight / Stime;
+            TimerElem.style.height = `${ElementHeight}px`;
 
             Sinterval = setInterval(() => {
                 TimerInput.value = --Stime;
                 ElementHeightPrend = ElementHeight - ElementHeightOnePiece;
                 ElementHeight = ElementHeightPrend;
-                TimerElem.style.height = `${ElementHeightPrend}px`; 
+                TimerElem.style.height = `${ElementHeightPrend}px`;
 
                 if (Stime == 0) {
                     addTimeOutWindow(); soundEffect();
                     clearInterval(Sinterval);
-                        TimerButton.textContent = 'Старт';
-                        TimerElem.style.height = '0px';
-                            setTimeout(() => {
-                                elementD.remove();
-                            }, 500)
+                    TimerButton.textContent = 'Старт';
+                    TimerElem.style.height = '0px';
+                    setTimeout(() => {
+                        elementD.remove();
+                    }, 500)
                     ElementHeight = 220;
+
                 }
             }, 1000);
             TimerButton.textContent = 'Стоп';
@@ -419,3 +424,5 @@ function deleteTimeOutWindow() {
     }, 300);
     clearInterval(sound);
 }
+
+//  https://api.openweathermap.org/data/2.5/weather?q=moscow&apikey=d044310d9f2da5fdd577679ae8d330cf
